@@ -1,3 +1,66 @@
 <template>
-  <h1>mobile view this</h1>
+  <div class="product-list-wrapper">
+    <ProductComponent
+      v-for="mobile in mobileList"
+      :productImage="mobile.productImage"
+      :productDescription="mobile.productDescription"
+      :rating="mobile.rating"
+      :price="mobile.price"
+      :key="mobile.productDescription"
+    />
+  </div>
 </template>
+<script>
+import ProductComponent from "../components/ProductComponent.vue";
+export default {
+  components: { ProductComponent },
+  data() {
+    return {
+      mobileList: [
+        {
+          productImage:
+            "https://m.media-amazon.com/images/I/71AvQd3VzqL._AC_UL480_FMwebp_QL65_.jpg",
+          productDescription:
+            "OnePlus Nord CE 2 Lite 5G (Blue Tide, 6GB RAM, 128GB Storage)",
+          rating: 4,
+          price: 19999,
+        },
+        {
+          productImage:
+            "https://m.media-amazon.com/images/I/911TJ1CDbLL._AC_UL480_FMwebp_QL65_.jpg",
+          productDescription:
+            "Redmi 9 Activ (Carbon Black, 4GB RAM, 64GB Storage)",
+          rating: 4,
+          price: 22000,
+        },
+        {
+          productImage:
+            "https://m.media-amazon.com/images/I/71k86pEH5LS._AC_UL480_FMwebp_QL65_.jpg",
+          productDescription:
+            "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage) with No Cost EMI & Additional Exchange Offers",
+          rating: 4,
+          price: 9999,
+        },
+        {
+          productImage:
+            "https://m.media-amazon.com/images/I/81QqVNKWtML._AC_UL480_FMwebp_QL65_.jpg",
+          productDescription:
+            "realme narzo 50i (Mint Green, 2GB RAM+32GB Storage) - 6.5 inch Large Display | 5000mAh Battery)",
+          rating: 4,
+          price: 49999,
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped>
+.product-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+</style>
