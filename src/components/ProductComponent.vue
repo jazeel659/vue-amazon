@@ -11,7 +11,15 @@
       </div>
     </div>
     <div class="add-to-cart-wrapper">
-      <input type="text" /><button>+</button>
+      <input
+        v-if="isProductAddedToCart"
+        type="text"
+        v-model="quantityInCart"
+        readonly
+      />
+      <button :class="{ active: isProductAddedToCart }" @click="addToCart">
+        +
+      </button>
     </div>
   </div>
 </template>
@@ -23,11 +31,24 @@ export default {
     rating: Number,
     price: Number,
   },
+  data() {
+    return {
+      quantityInCart: 0,
+    };
+  },
   computed: {
     priceWithCommas() {
       return this.price
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    },
+    isProductAddedToCart() {
+      return this.quantityInCart > 0;
+    },
+  },
+  methods: {
+    addToCart() {
+      this.quantityInCart += 1;
     },
   },
 };
@@ -55,6 +76,12 @@ export default {
 }
 .product-description {
   font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 10px;
 }
 .price-wrapper {
   color: #b12704;
@@ -76,26 +103,40 @@ export default {
   align-items: center;
 
   height: 30px;
-  border: 1px solid #f79b34;
-  width: 72px;
+
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 15px;
+  bottom: 15px;
 }
 .add-to-cart-wrapper input {
   width: 30px;
   color: #f79b34;
-  border: none;
+  border: 2px solid #f79b34;
+  border-right: none;
+
   outline: none;
   height: 100%;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .add-to-cart-wrapper button {
   font-weight: bold;
   color: #fff;
   background-color: #f79b34;
   font-size: 18px;
-  border: none;
+  border: 2px solid #f79b34;
+  border-left: none;
+  border-radius: 3px;
+
   width: 42px;
   height: 100%;
+}
+.add-to-cart-wrapper button.active {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 </style>

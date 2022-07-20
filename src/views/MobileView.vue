@@ -1,4 +1,6 @@
 <template>
+  <NavBarComponent />
+
   <div class="product-list-wrapper">
     <ProductComponent
       v-for="mobile in mobileList"
@@ -12,8 +14,11 @@
 </template>
 <script>
 import ProductComponent from "../components/ProductComponent.vue";
+import NavBarComponent from "../components/NavBarComponent.vue";
+
 export default {
-  components: { ProductComponent },
+  components: { ProductComponent, NavBarComponent },
+
   data() {
     return {
       mobileList: [
