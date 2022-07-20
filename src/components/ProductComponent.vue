@@ -10,6 +10,9 @@
         ><span class="price-info">{{ priceWithCommas }}</span>
       </div>
     </div>
+    <div class="add-to-cart-wrapper">
+      <input type="text" /><button>+</button>
+    </div>
   </div>
 </template>
 <script>
@@ -67,5 +70,32 @@ export default {
   position: relative;
   top: 4px;
   margin-right: 2px;
+}
+.add-to-cart-wrapper {
+  display: flex;
+  align-items: center;
+
+  height: 30px;
+  border: 1px solid #f79b34;
+  width: 72px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.add-to-cart-wrapper input {
+  width: 30px;
+  color: #f79b34;
+  border: none;
+  outline: none;
+  height: 100%;
+}
+.add-to-cart-wrapper button {
+  font-weight: bold;
+  color: #fff;
+  background-color: #f79b34;
+  font-size: 18px;
+  border: none;
+  width: 42px;
+  height: 100%;
 }
 </style>
