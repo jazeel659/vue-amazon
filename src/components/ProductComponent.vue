@@ -14,7 +14,7 @@
       <input
         v-if="isProductAddedToCart"
         type="text"
-        v-model="quantityInCart"
+        :value="quantityInCart"
         readonly
       />
       <button :class="{ active: isProductAddedToCart }" @click="addToCart">
@@ -30,11 +30,10 @@ export default {
     productDescription: String,
     rating: Number,
     price: Number,
+    quantityInCart: Number,
   },
   data() {
-    return {
-      quantityInCart: 0,
-    };
+    return {};
   },
   computed: {
     priceWithCommas() {
@@ -48,7 +47,7 @@ export default {
   },
   methods: {
     addToCart() {
-      this.quantityInCart += 1;
+      this.$emit("add-to-cart", this.productDescription);
     },
   },
 };

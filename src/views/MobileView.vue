@@ -1,16 +1,19 @@
 <template>
-  <NavBarComponent />
+  <NavBarComponent :numberOfItemsInCart="totalQtyInCart" />
 
   <div class="product-list-wrapper">
     <ProductComponent
       v-for="mobile in mobileList"
+      :key="mobile.productDescription"
       :productImage="mobile.productImage"
       :productDescription="mobile.productDescription"
       :rating="mobile.rating"
       :price="mobile.price"
-      :key="mobile.productDescription"
+      :quantityInCart="mobile.quantityInCart"
+      @add-to-cart="addToCart"
     />
   </div>
+  <h1>{{ totalQtyInCart }}</h1>
 </template>
 <script>
 import ProductComponent from "../components/ProductComponent.vue";
@@ -29,6 +32,7 @@ export default {
             "OnePlus Nord CE 2 Lite 5G (Blue Tide, 6GB RAM, 128GB Storage)",
           rating: 4,
           price: 19999,
+          quantityInCart: 0,
         },
         {
           productImage:
@@ -37,6 +41,7 @@ export default {
             "Redmi 9 Activ (Carbon Black, 4GB RAM, 64GB Storage)",
           rating: 4,
           price: 22000,
+          quantityInCart: 0,
         },
         {
           productImage:
@@ -45,6 +50,7 @@ export default {
             "Oppo A54 (Starry Blue, 6GB RAM, 128GB Storage) with No Cost EMI & Additional Exchange Offers",
           rating: 4,
           price: 9999,
+          quantityInCart: 0,
         },
         {
           productImage:
@@ -53,9 +59,29 @@ export default {
             "realme narzo 50i (Mint Green, 2GB RAM+32GB Storage) - 6.5 inch Large Display | 5000mAh Battery)",
           rating: 4,
           price: 49999,
+          quantityInCart: 0,
         },
       ],
     };
+  },
+  computed: {
+    totalQtyInCart() {
+      let sum = 0;
+      for (let mobileListElement of this.mobileList) {
+        sum += mobileListElement.quantityInCart;
+      }
+
+      return sum;
+    },
+  },
+  methods: {
+    addToCart(productDescription) {
+      let index = this.mobileList.findIndex((mobileListElement) => {
+        return mobileListElement.productDescription == productDescription;
+      });
+      this.mobileList[index].quantityInCart += 1;
+      console.log(index);
+    },
   },
 };
 </script>

@@ -18,10 +18,11 @@
 </template>
 <script>
 export default {
+  props: {
+    numberOfItemsInCart: Number,
+  },
   data() {
-    return {
-      numberOfItemsInCart: 0,
-    };
+    return {};
   },
 };
 </script>
@@ -31,6 +32,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+
   padding: 10px;
 }
 .amazon-logo {
