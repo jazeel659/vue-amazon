@@ -42,6 +42,7 @@ export default {
     price: Number,
     quantityInCart: Number,
     discountedPrice: Number,
+    productId: Number,
   },
   data() {
     return {};
@@ -58,7 +59,7 @@ export default {
   },
   methods: {
     addToCart() {
-      this.$emit("add-to-cart", this.productDescription);
+      this.$emit("add-to-cart", this.productId);
     },
   },
 };
