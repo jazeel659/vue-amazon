@@ -56,10 +56,12 @@ header {
 .cart-items {
   color: #f08804;
   font-weight: bold;
-  font-size: 18px;
-  position: relative;
-  right: 20px;
-  top: -9px;
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  position: absolute;
+  right: 7px;
+  top: -13px;
 }
 .mini-cart-wrapper {
   display: flex;

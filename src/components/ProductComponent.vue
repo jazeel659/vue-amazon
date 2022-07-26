@@ -5,9 +5,19 @@
     </div>
     <div class="product-info-wrapper">
       <p class="product-description">{{ productDescription }}</p>
-      <div class="price-wrapper">
-        <span class="price-symbol">₹</span
-        ><span class="price-info">{{ priceWithCommas }}</span>
+      <div class="actual-price-wrapper">
+        <div class="price-wrapper">
+          <span class="price-symbol">₹</span
+          ><span
+            :class="{ active: discountedPrice != null }"
+            class="price-info"
+            >{{ priceWithCommas }}</span
+          >
+        </div>
+        <div v-if="discountedPrice != null" class="price-wrapper">
+          <span class="price-symbol">₹</span
+          ><span class="price-info">{{ discountedPrice }}</span>
+        </div>
       </div>
     </div>
     <div class="add-to-cart-wrapper">
@@ -31,6 +41,7 @@ export default {
     rating: Number,
     price: Number,
     quantityInCart: Number,
+    discountedPrice: Number,
   },
   data() {
     return {};
@@ -82,10 +93,18 @@ export default {
   -webkit-box-orient: vertical;
   margin-bottom: 10px;
 }
+.actual-price-wrapper {
+  display: flex;
+  column-gap: 5px;
+}
 .price-wrapper {
   color: #b12704;
   display: flex;
 }
+.price-wrapper .price-info.active {
+  text-decoration: line-through;
+}
+
 .price-info {
   font-weight: 500;
   font-size: 20px;
